@@ -6,7 +6,7 @@ The separators are **spaces**, **tabs** and **newlines**.
 ### Expected function
 
 ```go
-func SplitWhiteSpaces(s string) []string {
+func splitWhiteSpaces(s string) []string {
 
 }
 ```
@@ -19,11 +19,10 @@ package main
 
 import (
 	"fmt"
-	"piscine"
 )
 
 func main() {
-	fmt.Printf("%#v\n", piscine.SplitWhiteSpaces("Hello how are you?"))
+	fmt.Printf("%#v\n", splitWhiteSpaces("Hello how are you?"))
 }
 ```
 
