@@ -4,7 +4,7 @@ Write a function that receives a string and a separator and returns a slice of s
 ### Expected function
 
 ```go
-func Split(s, sep string) []string {
+func split(s, sep string) []string {
 
 }
 ```
