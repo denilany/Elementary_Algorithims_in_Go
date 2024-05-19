@@ -13,6 +13,7 @@ func containsWord(first, second string) bool {
 			j++
 		}
 	}
+
 	return j == len(first)
 }
 
@@ -36,6 +37,8 @@ func main() {
 	if len(os.Args) != 3 {
 		return
 	}
-	word := wordMatch(args[0], args[1])
+	first := args[0]
+	second := args[1]
+	word := wordMatch(first, second)
 	print(word)
 }
