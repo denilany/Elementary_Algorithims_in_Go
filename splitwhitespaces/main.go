@@ -25,7 +25,7 @@ func splitWhiteSpaces(s string) []string {
 }
 
 func main() {
-	s := "Hello\nhow\nare\nyou?"
+	s := "Hello  how  are  you?"
 	slice := splitWhiteSpaces(s)
 	fmt.Printf("%#v", slice)
 }

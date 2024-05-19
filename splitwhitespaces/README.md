@@ -1,7 +1,7 @@
 # Instructions
 Write a function that separates the words of a string and puts them in a string slice.
 
-The separators are **spaces**, **tabs** and **newlines**.
+The separators are `spaces`, `tabs` and `newlines`.
 
 ### Expected function
 
