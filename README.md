@@ -8,6 +8,6 @@ Some of the problems are obtained from some coding websites such as [codewars](h
 Some of the programs will be using custom Go libraries that are outside the scope of the Go in-built packages.
 The major one is the [z01](https://www.github.com/01-edu/z01)
 How to install:
-
-    $ go get github.com/01-edu/z01
-
+```bash
+$ go get github.com/01-edu/z01
+```
