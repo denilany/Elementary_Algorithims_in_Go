@@ -125,9 +125,9 @@ func main() {
 
 	result := doop(val1, val2, sign)
 
-	if result > 9223372036854775807 || result < -9223372036854775808 {
-		return
-	}
+	// if result > 9223372036854775806 || result < -9223372036854775808 {
+	// 	return
+	// }
 	str := itoa(result)
 
 	println(str)
