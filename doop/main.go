@@ -12,7 +12,7 @@ func isOperator(s string) bool {
 
 func isVal(s string) bool {
 	for _, val := range s {
-		if val < '0' && val > '9' {
+		if val < '0' || val > '9' {
 			return false
 		}
 	}
@@ -125,11 +125,8 @@ func main() {
 
 	result := doop(val1, val2, sign)
 
-	// if result > 9223372036854775806 || result < -9223372036854775808 {
-	// 	return
-	// }
 	str := itoa(result)
 
-	println(str)
+	println(str+"\n")
 	z01.PrintRune('\n')
 }
