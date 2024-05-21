@@ -105,6 +105,9 @@ func doop(val1, val2, sign string) int {
 }
 
 func main() {
+	const MaxInt64 = 1<<63 - 1
+	const MinInt64 = -1 << 63
+
 	if len(os.Args) != 4 {
 		return
 	}
@@ -123,10 +126,21 @@ func main() {
 		return
 	}
 
+	num1 := atoi(val1)
+	num2 := atoi(val2)
+
+	if num1 > MaxInt64 || num1 < MinInt64 || num2 > MaxInt64 || num2 < MinInt64 {
+		return
+	}
+
 	result := doop(val1, val2, sign)
+
+	if result > MaxInt64 || result < MinInt64 {
+		return
+	}
 
 	str := itoa(result)
 
-	println(str+"\n")
+	println(str + "\n")
 	z01.PrintRune('\n')
 }
