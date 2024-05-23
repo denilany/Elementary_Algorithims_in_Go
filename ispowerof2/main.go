@@ -36,6 +36,7 @@ func atoi(s string) int {
 	return result
 }
 
+// Iterative approach
 // func isPowerOf2(n int) bool {
 // 	for n > 1 {
 // 		if n%2 != 0 {
