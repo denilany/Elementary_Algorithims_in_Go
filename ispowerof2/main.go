@@ -36,25 +36,30 @@ func atoi(s string) int {
 	return result
 }
 
+// func isPowerOf2(n int) bool {
+// 	for n > 1 {
+// 		if n%2 != 0 {
+// 			return false
+// 		}
+// 		n /= 2
+// 	}
+// 	return true
+// }
+
+// Using bitwise AND operator (&)
 func isPowerOf2(n int) bool {
-	for n > 1 {
-		if n%2 != 0 {
-			return false
-		}
-		n /= 2
-	}
-	return true
+	return n > 0 && (n&(n-1) == 0)
 }
 
-func itoa(num int) string {
-	var str string
-	for num > 0 {
-		val := num % 10
-		str += string('0' + val)
-		num /= 10
-	}
-	return str
-}
+// func itoa(num int) string {
+// 	var str string
+// 	for num > 0 {
+// 		val := num % 10
+// 		str += string('0' + val)
+// 		num /= 10
+// 	}
+// 	return str
+// }
 
 func printLn(s string) {
 	for _, ch := range s {
