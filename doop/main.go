@@ -24,14 +24,14 @@ func atoi(s string) int {
 	sign := 1
 
 	for i, ch := range s {
+		if ch < '0' || ch > '9' {
+			return 0
+		}
 		if i == 0 && ch == '-' {
 			sign = -1
 			continue
 		} else if i == 0 && ch == '+' {
 			continue
-		}
-		if ch < '0' && ch > '9' {
-			return 0
 		}
 		result *= 10
 		result += int(ch - '0')
