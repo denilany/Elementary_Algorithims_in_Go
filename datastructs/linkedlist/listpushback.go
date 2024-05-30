@@ -1,3 +1,10 @@
+/*
+	**Instructions**
+
+	Write a function ListPushBack that inserts a new element NodeL at the end of the list l while using the structure List.
+
+*/
+
 package linkedlist
 
 type NodeL struct {
@@ -10,7 +17,7 @@ type List struct {
 	Tail *NodeL
 }
 
-func LinkedList(l *List, data interface{}) {
+func ListPushBack(l *List, data interface{}) {
 	node := &NodeL{
 		Data: data,
 		Next: nil,
