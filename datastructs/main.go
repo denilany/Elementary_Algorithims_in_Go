@@ -52,6 +52,7 @@ func main() {
 }
 */
 
+/*
 func main() {
 	link := &linkedlist.List{}
 	link2 := &linkedlist.List{}
@@ -62,4 +63,34 @@ func main() {
 
 	fmt.Println(linkedlist.ListLast(link))
 	fmt.Println(linkedlist.ListLast(link2))
+}
+*/
+
+type (
+	List = linkedlist.List
+	Node = linkedlist.NodeL
+)
+
+func PrintList(l *List) {
+	link := l.Head
+	for link != nil {
+		fmt.Print(link.Data, " -> ")
+		link = link.Next
+	}
+	fmt.Println(nil)
+}
+
+func main() {
+	link := &List{}
+
+	linkedlist.ListPushBack(link, "I")
+	linkedlist.ListPushBack(link, 1)
+	linkedlist.ListPushBack(link, "something")
+	linkedlist.ListPushBack(link, 2)
+
+	fmt.Println("------list------")
+	PrintList(link)
+	linkedlist.ListClear(link)
+	fmt.Println("------updated list------")
+	PrintList(link)
 }
