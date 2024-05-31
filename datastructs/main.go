@@ -1,8 +1,9 @@
 package main
 
 import (
-	"Algorithims/datastructs/linkedlist"
 	"fmt"
+
+	"Algorithims/datastructs/linkedlist"
 )
 
 /*
@@ -38,6 +39,7 @@ func main() {
 }
 */
 
+/*
 func main() {
 	link := &linkedlist.List{}
 
@@ -47,4 +49,17 @@ func main() {
 	linkedlist.ListPushFront(link, "man")
 
 	fmt.Println(linkedlist.ListSize(link))
+}
+*/
+
+func main() {
+	link := &linkedlist.List{}
+	link2 := &linkedlist.List{}
+
+	linkedlist.ListPushBack(link, "three")
+	linkedlist.ListPushBack(link, 3)
+	linkedlist.ListPushBack(link, "1")
+
+	fmt.Println(linkedlist.ListLast(link))
+	fmt.Println(linkedlist.ListLast(link2))
 }
