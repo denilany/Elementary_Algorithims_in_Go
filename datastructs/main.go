@@ -1,9 +1,8 @@
 package main
 
 import (
-	"fmt"
-
 	"Algorithims/datastructs/linkedlist"
+	"fmt"
 )
 
 /*
@@ -22,6 +21,7 @@ func main() {
 }
 */
 
+/*
 func main() {
 	link := &linkedlist.List{}
 
@@ -35,4 +35,16 @@ func main() {
 		it = it.Next
 	}
 	fmt.Println()
+}
+*/
+
+func main() {
+	link := &linkedlist.List{}
+
+	linkedlist.ListPushFront(link, "Hello")
+	linkedlist.ListPushFront(link, "2")
+	linkedlist.ListPushFront(link, "you")
+	linkedlist.ListPushFront(link, "man")
+
+	fmt.Println(linkedlist.ListSize(link))
 }
