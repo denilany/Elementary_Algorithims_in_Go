@@ -25,7 +25,7 @@ func ListPushFront(l *List, data interface{}) {
 	}
 	if l.Head == nil {
 		l.Head = node
-		return
+		l.Tail = node
 	} else {
 		node.Next = l.Head
 		l.Head = node
