@@ -66,6 +66,7 @@ func main() {
 }
 */
 
+/*
 type (
 	List = linkedlist.List
 	Node = linkedlist.NodeL
@@ -93,4 +94,18 @@ func main() {
 	linkedlist.ListClear(link)
 	fmt.Println("------updated list------")
 	PrintList(link)
+}
+*/
+
+func main() {
+	link := &linkedlist.List{}
+
+	linkedlist.ListPushBack(link, "hello")
+	linkedlist.ListPushBack(link, "how are")
+	linkedlist.ListPushBack(link, "you")
+	linkedlist.ListPushBack(link, 1)
+
+	fmt.Println(linkedlist.ListAt(link.Head, 3).Data)
+	fmt.Println(linkedlist.ListAt(link.Head, 1).Data)
+	fmt.Println(linkedlist.ListAt(link.Head, 7))
 }
