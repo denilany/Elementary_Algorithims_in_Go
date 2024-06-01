@@ -97,6 +97,7 @@ func main() {
 }
 */
 
+/*
 func main() {
 	link := &linkedlist.List{}
 
@@ -108,4 +109,26 @@ func main() {
 	fmt.Println(linkedlist.ListAt(link.Head, 3).Data)
 	fmt.Println(linkedlist.ListAt(link.Head, 1).Data)
 	fmt.Println(linkedlist.ListAt(link.Head, 7))
+}
+*/
+
+func main() {
+	link := &linkedlist.List{}
+
+	linkedlist.ListPushBack(link, 1)
+	linkedlist.ListPushBack(link, 2)
+	linkedlist.ListPushBack(link, 3)
+	linkedlist.ListPushBack(link, 4)
+
+	linkedlist.ListReverse(link)
+
+	it := link.Head
+
+	for it != nil {
+		fmt.Println(it.Data)
+		it = it.Next
+	}
+
+	fmt.Println("Tail", link.Tail)
+	fmt.Println("Head", link.Head)
 }
