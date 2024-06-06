@@ -7,7 +7,7 @@ func inter(str1, str2 string) string {
 	result := make([]rune, 0, len(str1))
 
 	for _, ch := range str1 {
-		if _, ok := map1[ch]; !ok && containsRune(str2, ch) {
+		if !map1[ch] && containsRune(str2, ch) {
 			map1[ch] = true
 			result = append(result, ch)
 		}
