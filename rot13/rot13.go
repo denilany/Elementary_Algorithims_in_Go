@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func rot13(str string) string {
 	result := ""
@@ -10,7 +13,7 @@ func rot13(str string) string {
 			result += string((ch-'a'+13)%26 + 'a')
 		} else if ch >= 'A' && ch <= 'Z' {
 			result += string((ch-'A'+13)%26 + 'A')
-		} else  {
+		} else {
 			result += string(ch)
 		}
 	}
@@ -18,8 +21,11 @@ func rot13(str string) string {
 }
 
 func main() {
-	str := "abc"
+	if len(os.Args) != 2 {
+		return
+	}
+	args := os.Args[1]
 
-	res := rot13(str)
+	res := rot13(args)
 	fmt.Println(res)
 }
