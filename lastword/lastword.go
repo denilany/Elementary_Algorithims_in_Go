@@ -1,8 +1,21 @@
 package main
 
 import (
-	"fmt"
+	"os"
+
+	"github.com/01-edu/z01"
 )
+
+func lastWord(str string) string {
+	slice := split(str, " ")
+
+	for i := len(slice) - 1; i >= 0; i++ {
+		if slice[i] != "" {
+			return slice[i]
+		}
+	}
+	return ""
+}
 
 func split(s, sep string) []string {
 	result := make([]string, 0)
@@ -16,14 +29,28 @@ func split(s, sep string) []string {
 			startIndex = i + len(sep)
 		}
 	}
-	// Append the last part of the string if it is present
 	if startIndex < len(s) {
 		result = append(result, s[startIndex:])
 	}
 	return result
 }
 
+func printLn(str string) {
+	for _, ch := range str {
+		z01.PrintRune(ch)
+	}
+	z01.PrintRune('\n')
+}
+
 func main() {
-	s := "HelloHAPhowHAPareHAPyou?"
-	fmt.Printf("%#v\n", split(s, "HAP"))
+	args := os.Args
+
+	if len(args) != 2 {
+		return
+	}
+	result := lastWord(args[1])
+
+	if result != "" {
+		printLn(result)
+	}
 }
