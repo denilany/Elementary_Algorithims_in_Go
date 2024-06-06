@@ -1,31 +1,20 @@
 package main
 
-import (
-	"fmt"
-	"os"
-)
+import "fmt"
 
-func rot13(str string) string {
-	result := ""
+func activeBits(num int) int {
+	count := 0
 
-	for _, ch := range str {
-		if ch >= 'a' && ch <= 'z' {
-			result += string((ch-'a'+13)%26 + 'a')
-		} else if ch >= 'A' && ch <= 'Z' {
-			result += string((ch-'A'+13)%26 + 'A')
-		} else {
-			result += string(ch)
+	for i := 7; i >= 0; i-- {
+		bit := (num >> i) & 1
+		if num < bit {
+			count++
 		}
 	}
-	return result
+	return count
 }
 
 func main() {
-	if len(os.Args) != 2 {
-		return
-	}
-	args := os.Args[1]
-
-	res := rot13(args)
-	fmt.Println(res)
+	num := 7
+	fmt.Println(activeBits(num))
 }
