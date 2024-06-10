@@ -6,8 +6,8 @@ import (
 	"strconv"
 )
 
-func romanMap(val int) string {
-	roman := map[int]string{
+func romanMap() map[int]string {
+	return map[int]string{
 		1:    "I",
 		4:    "IV",
 		5:    "V",
@@ -22,79 +22,52 @@ func romanMap(val int) string {
 		900:  "CM",
 		1000: "M",
 	}
-	return roman[val]
 }
 
-func rn(num int) string {
+func rn(num int) (string, string) {
 	romanStr := ""
+	romanMath := ""
+	romanNumerals := romanMap()
 
-	// Thousands
-	thousands := num / 1000
-	if thousands < 4000 {
-		for i := 0; i < thousands; i++ {
-			romanStr += romanMap(1000)
+	values := []int{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}
+
+	for _, value := range values {
+		for num >= value {
+			num -= value
+			romanStr += romanNumerals[value]
+			if romanMath != "" {
+				romanMath += "+"
+			}
+			romanMath += romanNumerals[value]
 		}
-	} else {
-		fmt.Println("ERROR: cannot convert to roman digit")
-		return ""
 	}
-	num %= 1000
+	// splitMath := strings.Split(romanMath, "+")
+	// for _, ch := range splitMath {
+	// 	if len(ch) > 1 {
+	// 		for _, rn := range ch {
 
-	//Hundreds
-	hundreds := num / 100
-	if hundreds < 4 {
-		for i := 0; i < hundreds; i++ {
-			romanStr += romanMap(100)
-		}
-	} else if hundreds > 5 && hundreds < 9 {
-		romanStr += romanMap(500)
-		for i := 0; i < hundreds-5; i++ {
-			romanStr += romanMap(100)
-		}
-	} else {
-		romanStr += romanMap(hundreds * 100)
-	}
-	num %= 100
+	// 		}
+	// 	}
+	// }
 
-	//Tens
-	tens := num / 10
-	// fmt.Println(tens)
-	if tens < 4 {
-		for i := 0; i < tens; i++ {
-			romanStr += romanMap(10)
-		}
-	} else if tens > 50 && tens < 90 {
-		romanStr += romanMap(50)
-		for i := 0; i < tens-5; i++ {
-			romanStr += romanMap(10)
-		}
-	} else {
-		romanStr += romanMap(tens * 10)
-	}
-	num %= 10
-
-	//Ones
-	ones := num
-
-	if ones < 4 {
-		for i := 0; i < ones; i++ {
-			romanStr += romanMap(1)
-		}
-	} else if ones > 5 && ones < 9 {
-		romanStr += romanMap(5)
-		for i := 0; i < ones-5; i++ {
-			romanStr += romanMap(1)
-		}
-	} else {
-		romanStr += romanMap(ones)
-	}
-	return romanStr
+	return romanStr, romanMath
 }
 
 func main() {
-	args := os.Args[1:]
-	val, _ := strconv.Atoi(args[0])
+	if len(os.Args) < 2 {
+		fmt.Println("ERROR: cannot convert to roman digit")
+		return
+	}
 
-	roman := rn(val)
+	arg := os.Args[1]
+	num, err := strconv.Atoi(arg)
+	if err != nil || num <= 0 || num >= 4000 {
+		fmt.Println("ERROR: cannot convert to roman digit")
+		return
+	}
+
+	roman, formula := rn(num)
+
+	fmt.Println(formula)
 	fmt.Println(roman)
 }
