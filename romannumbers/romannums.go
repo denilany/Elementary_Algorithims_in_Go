@@ -3,8 +3,28 @@ package main
 import (
 	"fmt"
 	"os"
-	"strconv"
+
+	"github.com/01-edu/z01"
 )
+
+func main() {
+	if len(os.Args) < 2 {
+		fmt.Println("ERROR: cannot convert to roman digit")
+		return
+	}
+
+	arg := os.Args[1]
+	num := atoi(arg)
+	if num <= 0 || num >= 4000 {
+		fmt.Println("ERROR: cannot convert to roman digit")
+		return
+	}
+
+	roman, formula := rn(num)
+
+	printLn(formula)
+	printLn(roman)
+}
 
 func romanMap() map[int]string {
 	return map[int]string{
@@ -41,33 +61,72 @@ func rn(num int) (string, string) {
 			romanMath += romanNumerals[value]
 		}
 	}
-	// splitMath := strings.Split(romanMath, "+")
-	// for _, ch := range splitMath {
-	// 	if len(ch) > 1 {
-	// 		for _, rn := range ch {
+	splitMath := split(romanMath, "+")
+	for i, ch := range splitMath {
+		if len(ch) > 1 {
+			ch = "(" + string(ch[1]) + "-" + string(ch[0]) + ")"
+			splitMath = append(splitMath[:i], ch)
+		}
+	}
+	joined := join(splitMath, "+")
 
-	// 		}
-	// 	}
-	// }
-
-	return romanStr, romanMath
+	return romanStr, joined
 }
 
-func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("ERROR: cannot convert to roman digit")
-		return
+func printLn(val string) {
+	for _, ch := range val {
+		z01.PrintRune(ch)
 	}
+	z01.PrintRune('\n')
+}
 
-	arg := os.Args[1]
-	num, err := strconv.Atoi(arg)
-	if err != nil || num <= 0 || num >= 4000 {
-		fmt.Println("ERROR: cannot convert to roman digit")
-		return
+func split(s, sep string) []string {
+	var result []string
+
+	index := 0
+	for i := 0; i+len(sep) <= len(s); i++ {
+		if s[i:i+len(sep)] == sep {
+			if index < i {
+				result = append(result, s[index:i])
+			}
+			index = i + len(sep)
+		}
 	}
+	if index < len(s) {
+		result = append(result, s[index:])
+	}
+	return result
+}
 
-	roman, formula := rn(num)
+func join(arr []string, sep string) string {
+	result := ""
+	for i, s := range arr {
+		if i != len(arr)-1 {
+			result += s + sep
+		} else {
+			result += s
+		}
+	}
+	return result
+}
 
-	fmt.Println(formula)
-	fmt.Println(roman)
+func atoi(str string) int {
+
+	result := 0
+	sign := 1
+
+	for i, ch := range str {
+		if ch < '0' || ch > '9' {
+			return 0
+		}
+		if i == 0 && ch == '-' {
+			sign = -1
+			continue
+		} else if i == 0 && ch == '+' {
+			continue
+		}
+		result *= 10
+		result += int(ch - '0')
+	}
+	return result * sign
 }
