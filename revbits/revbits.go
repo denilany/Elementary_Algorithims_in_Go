@@ -7,7 +7,7 @@ func reverseBits(oct byte) byte {
 
 	for i := 0; i < 8; i++ {
 		bit := (oct >> i) & 1
-		reverse = reverse | (bit << (7 - i))
+		reverse |= (bit << (7 - i))
 	}
 	return reverse
 }
