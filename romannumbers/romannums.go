@@ -26,51 +26,25 @@ func main() {
 	printLn(roman)
 }
 
-func romanMap() map[int]string {
-	return map[int]string{
-		1:    "I",
-		4:    "IV",
-		5:    "V",
-		9:    "IX",
-		10:   "X",
-		40:   "XL",
-		50:   "L",
-		90:   "XC",
-		100:  "C",
-		400:  "CD",
-		500:  "D",
-		900:  "CM",
-		1000: "M",
-	}
-}
-
 func rn(num int) (string, string) {
-	romanStr := ""
-	romanMath := ""
-	romanNumerals := romanMap()
-
 	values := []int{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}
+	calculation := []string{"M", "(M-C)", "D", "(D-C)", "C", "(C-X)", "L", "(L-X)", "X", "(X-I)", "V", "(V-I)", "I"}
+	roman := []string{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"}
 
-	for _, value := range values {
-		for num >= value {
-			num -= value
-			romanStr += romanNumerals[value]
-			if romanMath != "" {
-				romanMath += "+"
+	romanStr := ""
+	calc := ""
+
+	for i, val := range values {
+		for num >= val {
+			num -= val
+			romanStr += roman[i]
+			if calc != "" {
+				calc += "+"
 			}
-			romanMath += romanNumerals[value]
+			calc += calculation[i]
 		}
 	}
-	splitMath := split(romanMath, "+")
-	for i, ch := range splitMath {
-		if len(ch) > 1 {
-			ch = "(" + string(ch[1]) + "-" + string(ch[0]) + ")"
-			splitMath = append(splitMath[:i], ch)
-		}
-	}
-	joined := join(splitMath, "+")
-
-	return romanStr, joined
+	return romanStr, calc
 }
 
 func printLn(val string) {
@@ -78,36 +52,6 @@ func printLn(val string) {
 		z01.PrintRune(ch)
 	}
 	z01.PrintRune('\n')
-}
-
-func split(s, sep string) []string {
-	var result []string
-
-	index := 0
-	for i := 0; i+len(sep) <= len(s); i++ {
-		if s[i:i+len(sep)] == sep {
-			if index < i {
-				result = append(result, s[index:i])
-			}
-			index = i + len(sep)
-		}
-	}
-	if index < len(s) {
-		result = append(result, s[index:])
-	}
-	return result
-}
-
-func join(arr []string, sep string) string {
-	result := ""
-	for i, s := range arr {
-		if i != len(arr)-1 {
-			result += s + sep
-		} else {
-			result += s
-		}
-	}
-	return result
 }
 
 func atoi(str string) int {
@@ -130,3 +74,80 @@ func atoi(str string) int {
 	}
 	return result * sign
 }
+
+// func romanMap() map[int]string {
+// 	return map[int]string{
+// 		1:    "I",
+// 		4:    "IV",
+// 		5:    "V",
+// 		9:    "IX",
+// 		10:   "X",
+// 		40:   "XL",
+// 		50:   "L",
+// 		90:   "XC",
+// 		100:  "C",
+// 		400:  "CD",
+// 		500:  "D",
+// 		900:  "CM",
+// 		1000: "M",
+// 	}
+// }
+
+// func rn(num int) (string, string) {
+// 	romanStr := ""
+// 	romanMath := ""
+// 	romanNumerals := romanMap()
+
+// 	values := []int{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}
+
+// 	for _, value := range values {
+// 		for num >= value {
+// 			num -= value
+// 			romanStr += romanNumerals[value]
+// 			if romanMath != "" {
+// 				romanMath += "+"
+// 			}
+// 			romanMath += romanNumerals[value]
+// 		}
+// 	}
+// 	splitMath := split(romanMath, "+")
+// 	for i, ch := range splitMath {
+// 		if len(ch) > 1 {
+// 			ch = "(" + string(ch[1]) + "-" + string(ch[0]) + ")"
+// 			splitMath = append(splitMath[:i], ch)
+// 		}
+// 	}
+// 	joined := join(splitMath, "+")
+
+// 	return romanStr, joined
+// }
+
+// func split(s, sep string) []string {
+// 	var result []string
+
+// 	index := 0
+// 	for i := 0; i+len(sep) <= len(s); i++ {
+// 		if s[i:i+len(sep)] == sep {
+// 			if index < i {
+// 				result = append(result, s[index:i])
+// 			}
+// 			index = i + len(sep)
+// 		}
+// 	}
+// 	if index < len(s) {
+// 		result = append(result, s[index:])
+// 	}
+// 	return result
+// }
+
+// func join(arr []string, sep string) string {
+// 	result := ""
+// 	for i, s := range arr {
+// 		if i != len(arr)-1 {
+// 			result += s + sep
+// 		} else {
+// 			result += s
+// 		}
+// 	}
+// 	return result
+// }
