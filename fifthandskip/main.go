@@ -3,11 +3,11 @@ package main
 import "fmt"
 
 func FifthAndSkip(s string) string {
-	str := removeSpaces(s)
-
-	if len([]rune(str)) < 5 {
+	if len([]rune(s)) < 5 {
 		return "Invalid Input\n"
 	}
+
+	str := removeSpaces(s)
 
 	result := ""
 
@@ -35,8 +35,8 @@ func removeSpaces(str string) string {
 }
 
 func main() {
-	// fmt.Print(FifthAndSkip("abcdefghijklmnopqrstuwxyz"))
-	// fmt.Print(FifthAndSkip("This is a short sentence"))
+	fmt.Print(FifthAndSkip("abcdefghijklmnopqrstuwxyz"))
+	fmt.Print(FifthAndSkip("This is a short sentence"))
 	// fmt.Print(FifthAndSkip("1234"))
-	fmt.Print(FifthAndSkip("d$Aefgh56@hdj€lk£"))
+	fmt.Print(FifthAndSkip("e 5£ @ 8* 7 =56 ;"))
 }
