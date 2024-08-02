@@ -1,9 +1,8 @@
 package main
 
 import (
+	"algo/datastructs/linkedlist"
 	"fmt"
-
-	"Algorithims/datastructs/linkedlist"
 )
 
 /*
