@@ -1,45 +1,45 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/01-edu/go-tests/lib/challenge"
 	"github.com/01-edu/go-tests/lib/random"
 	"github.com/01-edu/go-tests/solutions"
+	"github.com/01-edu/z01"
 )
 
-// func printstr(str string) {
-// 	for _, char := range str {
-// 		z01.PrintRune(char)
-// 	}
-// }
+func printstr(str string) {
+	for _, char := range str {
+		z01.PrintRune(char)
+	}
+}
 
-// func hex(b byte) string {
-// 	hex := "0123456789abcdef"
-// 	return string(hex[b>>4]) + string(hex[b&0x0f])
-// }
+func printHex(b byte) string {
+	hex := "0123456789abcdef"
+	return string(hex[b>>4]) + string(hex[b&0x0f])
+}
 
 func PrintMemory(arr [10]byte) {
 	// Print hex values
 	for i, b := range arr {
-		fmt.Printf("%02x", b)
-		if (i+1)%4 == 0 && i != len(arr)-1 {
-			fmt.Print("\n")
-		} else if i != len(arr)-1 {
-			fmt.Print(" ")
+		hex := printHex(b)
+		printstr(hex)
+
+		if (i+1)%4 == 0 || i == len(arr)-1 {
+			printstr("\n")
+		} else {
+			printstr(" ")
 		}
 	}
-	fmt.Print("\n")
 
 	// Print character representation
 	for _, b := range arr {
 		if b > 32 && b <= 126 {
-			fmt.Print(string(b))
+			printstr(string(b))
 		} else {
-			fmt.Print(".")
+			printstr(".")
 		}
 	}
-	fmt.Print("\n")
+	printstr("\n")
 }
 
 func main() {
